@@ -1,0 +1,87 @@
+﻿<Window x:Class="CARCENTRdb.EmployeBuyCar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CARCENTRdb"
+        mc:Ignorable="d"
+        Title="Покупка автомобиля" Height="900" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Верхняя панель с кнопкой "Выйти" -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2"
+                    Background="#4CAF50" Height="50" VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch" Margin="0,0,0,10">
+            <TextBlock Text="Покупка автомобиля" FontSize="20" FontWeight="Bold"
+                       Foreground="White" VerticalAlignment="Center"
+                       Margin="10,0,0,0"/>
+            <Button Content="Выйти" Click="Button_Click"
+                 
+                    Background="Transparent" Foreground="White"
+                    HorizontalAlignment="Right" Margin="0,0,10,0"/>
+        </StackPanel>
+
+        <!-- Левая панель (пустая, можно добавить дополнительные элементы) -->
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0"
+                    Background="#E0E0E0" Width="150" Margin="0,0,10,0">
+            <!-- Здесь можно добавить дополнительные элементы, если нужно -->
+        </StackPanel>
+
+        <!-- Центральная панель с формами для ввода данных -->
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="5,0,14,0" VerticalAlignment="Top">
+                <!-- Форма для ввода данных о покупке автомобиля -->
+                <StackPanel Orientation="Vertical" Margin="10,10,0,0">
+                    <Label Content="Марка:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <ComboBox x:Name="cbМарка" Width="300" Margin="0,0,0,10"
+                              SelectionChanged="cbМарка_SelectionChanged"/>
+
+                    <Label Content="Модель:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <ComboBox x:Name="cbМодель" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="Цвет:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <ComboBox x:Name="cbЦвет" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="Комплектация:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <ComboBox x:Name="cbКомплектация" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="Способ оплаты:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <ComboBox x:Name="cbСпособОплаты" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="Состояние:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <ComboBox x:Name="cbСостояние" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="Цена:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <TextBox x:Name="txtЦена" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="Год выпуска:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <TextBox x:Name="txtГодВыпуска" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="Количество владельцев:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <TextBox x:Name="txtКоличествоВладельцев" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="СТС:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <TextBox x:Name="txtСТС" Width="300" Margin="0,0,0,10"/>
+
+                    <Label Content="ПТС:" FontWeight="Bold" FontFamily="Segoe UI" FontSize="14"/>
+                    <TextBox x:Name="txtПТС" Width="300" Margin="0,0,0,10"/>
+
+                    <Button Content="Сохранить авто" Height="40" Width="300"
+                            Click="btnSaveCar_Click" Background="#4CAF50"
+                            Foreground="White" FontSize="16" FontWeight="Bold"
+                            Margin="0,20,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

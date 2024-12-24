@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6de9ef25880d4ab98127518d5aa08e9a" Name="Diagram1">
+        <EntityTypeShape EntityType="АвтосалонModel.Автомобили" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Должности" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.История" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Клиенты" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Комплектация" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Марка" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Модель" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Паспорт" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Сделка" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Состояние" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Сотрудники" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Способ_оплаты" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Услуги" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Финансовые_операции" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="АвтосалонModel.Цвет" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="АвтосалонModel.FK__Автомобил__Код_к__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Автомобил__Код_м__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Автомобил__Код_с__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Автомобил__Код_ц__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Сделка__Код_авто__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Услуги__Код_авто__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Сотрудник__Код_д__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Сделка__Код_клие__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Модель__Код_марк__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Сотрудник__Код_п__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Сделка__Код_сотр__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Сделка__Код_Спос__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="АвтосалонModel.FK__Финансовы__Код_с__5DCAEF64" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

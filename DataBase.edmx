@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище АвтосалонModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Автомобили">
+          <Key>
+            <PropertyRef Name="Код_авто" />
+          </Key>
+          <Property Name="Код_авто" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_цвета" Type="int" Nullable="false" />
+          <Property Name="Код_комплектации" Type="int" Nullable="false" />
+          <Property Name="Год_выпуска" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Количество_владельцев" Type="int" Nullable="false" />
+          <Property Name="Код_состояния" Type="int" Nullable="false" />
+          <Property Name="СТС" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ПТС" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Код_марки" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="История">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cтатус" Type="nvarchar" MaxLength="50" />
+          <Property Name="Дата" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="Код_клиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_паспорта" Type="int" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="100" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Комплектация">
+          <Key>
+            <PropertyRef Name="Код_комплектации" />
+          </Key>
+          <Property Name="Код_комплектации" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Марка">
+          <Key>
+            <PropertyRef Name="Код_марки" />
+          </Key>
+          <Property Name="Код_марки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Модель">
+          <Key>
+            <PropertyRef Name="Код_модели" />
+          </Key>
+          <Property Name="Код_модели" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_марки" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Паспорт">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Серия" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Номер" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Дата_выдачи" Type="date" Nullable="false" />
+          <Property Name="Кем_выдан" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Дата_рождения" Type="date" Nullable="false" />
+          <Property Name="Место_рождения" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Место_прописки" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сделка">
+          <Key>
+            <PropertyRef Name="Код_сделки" />
+          </Key>
+          <Property Name="Код_сделки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_сотрудника" Type="int" Nullable="false" />
+          <Property Name="Код_клиента" Type="int" Nullable="false" />
+          <Property Name="Дата_сделки" Type="date" Nullable="false" />
+          <Property Name="Сумма_сделки" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Код_Способ_оплаты" Type="int" Nullable="false" />
+          <Property Name="Срок_гарантии" Type="int" Nullable="false" />
+          <Property Name="Код_авто" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Состояние">
+          <Key>
+            <PropertyRef Name="Код_состояния" />
+          </Key>
+          <Property Name="Код_состояния" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_должности" Type="int" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="100" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="20" />
+          <Property Name="Код_паспорта" Type="int" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Способ_оплаты">
+          <Key>
+            <PropertyRef Name="Код_Способ_оплаты" />
+          </Key>
+          <Property Name="Код_Способ_оплаты" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Услуги">
+          <Key>
+            <PropertyRef Name="Код_услуги" />
+          </Key>
+          <Property Name="Код_услуги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_авто" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Стоимость" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Финансовые_операции">
+          <Key>
+            <PropertyRef Name="Код_операции" />
+          </Key>
+          <Property Name="Код_операции" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_сделки" Type="int" Nullable="false" />
+          <Property Name="Сумма" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Цвет">
+          <Key>
+            <PropertyRef Name="Код_цвета" />
+          </Key>
+          <Property Name="Код_цвета" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Автомобил__Код_к__52593CB8">
+          <End Role="Комплектация" Type="Self.Комплектация" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Комплектация">
+              <PropertyRef Name="Код_комплектации" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_комплектации" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Автомобил__Код_м__534D60F1">
+          <End Role="Марка" Type="Self.Марка" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Марка">
+              <PropertyRef Name="Код_марки" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_марки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Автомобил__Код_с__5441852A">
+          <End Role="Состояние" Type="Self.Состояние" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Состояние">
+              <PropertyRef Name="Код_состояния" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_состояния" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Автомобил__Код_ц__5535A963">
+          <End Role="Цвет" Type="Self.Цвет" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Цвет">
+              <PropertyRef Name="Код_цвета" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_цвета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Модель__Код_марк__5629CD9C">
+          <End Role="Марка" Type="Self.Марка" Multiplicity="1" />
+          <End Role="Модель" Type="Self.Модель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Марка">
+              <PropertyRef Name="Код_марки" />
+            </Principal>
+            <Dependent Role="Модель">
+              <PropertyRef Name="Код_марки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_авто__571DF1D5">
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Автомобили">
+              <PropertyRef Name="Код_авто" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_авто" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_клие__5812160E">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_сотр__59063A47">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Код_сотрудника" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_Спос__59FA5E80">
+          <End Role="Способ_оплаты" Type="Self.Способ_оплаты" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Способ_оплаты">
+              <PropertyRef Name="Код_Способ_оплаты" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_Способ_оплаты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сотрудник__Код_д__5AEE82B9">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Код_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сотрудник__Код_п__5BE2A6F2">
+          <End Role="Паспорт" Type="Self.Паспорт" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Паспорт">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Код_паспорта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Услуги__Код_авто__5CD6CB2B">
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="1" />
+          <End Role="Услуги" Type="Self.Услуги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Автомобили">
+              <PropertyRef Name="Код_авто" />
+            </Principal>
+            <Dependent Role="Услуги">
+              <PropertyRef Name="Код_авто" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Финансовы__Код_с__5DCAEF64">
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="1" />
+          <End Role="Финансовые_операции" Type="Self.Финансовые_операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сделка">
+              <PropertyRef Name="Код_сделки" />
+            </Principal>
+            <Dependent Role="Финансовые_операции">
+              <PropertyRef Name="Код_сделки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище АвтосалонModelContainer">
+          <EntitySet Name="Автомобили" EntityType="Self.Автомобили" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="История" EntityType="Self.История" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Комплектация" EntityType="Self.Комплектация" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Марка" EntityType="Self.Марка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Модель" EntityType="Self.Модель" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Паспорт" EntityType="Self.Паспорт" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сделка" EntityType="Self.Сделка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Состояние" EntityType="Self.Состояние" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Способ_оплаты" EntityType="Self.Способ_оплаты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Услуги" EntityType="Self.Услуги" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Финансовые_операции" EntityType="Self.Финансовые_операции" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Цвет" EntityType="Self.Цвет" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Автомобил__Код_к__52593CB8" Association="Self.FK__Автомобил__Код_к__52593CB8">
+            <End Role="Комплектация" EntitySet="Комплектация" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Автомобил__Код_м__534D60F1" Association="Self.FK__Автомобил__Код_м__534D60F1">
+            <End Role="Марка" EntitySet="Марка" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Автомобил__Код_с__5441852A" Association="Self.FK__Автомобил__Код_с__5441852A">
+            <End Role="Состояние" EntitySet="Состояние" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Автомобил__Код_ц__5535A963" Association="Self.FK__Автомобил__Код_ц__5535A963">
+            <End Role="Цвет" EntitySet="Цвет" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Модель__Код_марк__5629CD9C" Association="Self.FK__Модель__Код_марк__5629CD9C">
+            <End Role="Марка" EntitySet="Марка" />
+            <End Role="Модель" EntitySet="Модель" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_авто__571DF1D5" Association="Self.FK__Сделка__Код_авто__571DF1D5">
+            <End Role="Автомобили" EntitySet="Автомобили" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_клие__5812160E" Association="Self.FK__Сделка__Код_клие__5812160E">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_сотр__59063A47" Association="Self.FK__Сделка__Код_сотр__59063A47">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_Спос__59FA5E80" Association="Self.FK__Сделка__Код_Спос__59FA5E80">
+            <End Role="Способ_оплаты" EntitySet="Способ_оплаты" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сотрудник__Код_д__5AEE82B9" Association="Self.FK__Сотрудник__Код_д__5AEE82B9">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сотрудник__Код_п__5BE2A6F2" Association="Self.FK__Сотрудник__Код_п__5BE2A6F2">
+            <End Role="Паспорт" EntitySet="Паспорт" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Услуги__Код_авто__5CD6CB2B" Association="Self.FK__Услуги__Код_авто__5CD6CB2B">
+            <End Role="Автомобили" EntitySet="Автомобили" />
+            <End Role="Услуги" EntitySet="Услуги" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Финансовы__Код_с__5DCAEF64" Association="Self.FK__Финансовы__Код_с__5DCAEF64">
+            <End Role="Сделка" EntitySet="Сделка" />
+            <End Role="Финансовые_операции" EntitySet="Финансовые_операции" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="АвтосалонModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Автомобили">
+          <Key>
+            <PropertyRef Name="Код_авто" />
+          </Key>
+          <Property Name="Код_авто" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_цвета" Type="Int32" Nullable="false" />
+          <Property Name="Код_комплектации" Type="Int32" Nullable="false" />
+          <Property Name="Год_выпуска" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Количество_владельцев" Type="Int32" Nullable="false" />
+          <Property Name="Код_состояния" Type="Int32" Nullable="false" />
+          <Property Name="СТС" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ПТС" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Код_марки" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Комплектация" Relationship="Self.FK__Автомобил__Код_к__52593CB8" FromRole="Автомобили" ToRole="Комплектация" />
+          <NavigationProperty Name="Марка" Relationship="Self.FK__Автомобил__Код_м__534D60F1" FromRole="Автомобили" ToRole="Марка" />
+          <NavigationProperty Name="Состояние" Relationship="Self.FK__Автомобил__Код_с__5441852A" FromRole="Автомобили" ToRole="Состояние" />
+          <NavigationProperty Name="Цвет" Relationship="Self.FK__Автомобил__Код_ц__5535A963" FromRole="Автомобили" ToRole="Цвет" />
+          <NavigationProperty Name="Сделка" Relationship="Self.FK__Сделка__Код_авто__571DF1D5" FromRole="Автомобили" ToRole="Сделка" />
+          <NavigationProperty Name="Услуги" Relationship="Self.FK__Услуги__Код_авто__5CD6CB2B" FromRole="Автомобили" ToRole="Услуги" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Сотрудник__Код_д__5AEE82B9" FromRole="Должности" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="История">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cтатус" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Дата" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="Код_клиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_паспорта" Type="Int32" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Сделка" Relationship="Self.FK__Сделка__Код_клие__5812160E" FromRole="Клиенты" ToRole="Сделка" />
+        </EntityType>
+        <EntityType Name="Комплектация">
+          <Key>
+            <PropertyRef Name="Код_комплектации" />
+          </Key>
+          <Property Name="Код_комплектации" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Автомобили" Relationship="Self.FK__Автомобил__Код_к__52593CB8" FromRole="Комплектация" ToRole="Автомобили" />
+        </EntityType>
+        <EntityType Name="Марка">
+          <Key>
+            <PropertyRef Name="Код_марки" />
+          </Key>
+          <Property Name="Код_марки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Автомобили" Relationship="Self.FK__Автомобил__Код_м__534D60F1" FromRole="Марка" ToRole="Автомобили" />
+          <NavigationProperty Name="Модель" Relationship="Self.FK__Модель__Код_марк__5629CD9C" FromRole="Марка" ToRole="Модель" />
+        </EntityType>
+        <EntityType Name="Модель">
+          <Key>
+            <PropertyRef Name="Код_модели" />
+          </Key>
+          <Property Name="Код_модели" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_марки" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Марка" Relationship="Self.FK__Модель__Код_марк__5629CD9C" FromRole="Модель" ToRole="Марка" />
+        </EntityType>
+        <EntityType Name="Паспорт">
+          <Key>
+            <PropertyRef Name="Код" />
+          </Key>
+          <Property Name="Код" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Серия" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Номер" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_выдачи" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Кем_выдан" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Место_рождения" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Место_прописки" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Сотрудник__Код_п__5BE2A6F2" FromRole="Паспорт" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Сделка">
+          <Key>
+            <PropertyRef Name="Код_сделки" />
+          </Key>
+          <Property Name="Код_сделки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_сотрудника" Type="Int32" Nullable="false" />
+          <Property Name="Код_клиента" Type="Int32" Nullable="false" />
+          <Property Name="Дата_сделки" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Сумма_сделки" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Код_Способ_оплаты" Type="Int32" Nullable="false" />
+          <Property Name="Срок_гарантии" Type="Int32" Nullable="false" />
+          <Property Name="Код_авто" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Автомобили" Relationship="Self.FK__Сделка__Код_авто__571DF1D5" FromRole="Сделка" ToRole="Автомобили" />
+          <NavigationProperty Name="Клиенты" Relationship="Self.FK__Сделка__Код_клие__5812160E" FromRole="Сделка" ToRole="Клиенты" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK__Сделка__Код_сотр__59063A47" FromRole="Сделка" ToRole="Сотрудники" />
+          <NavigationProperty Name="Способ_оплаты" Relationship="Self.FK__Сделка__Код_Спос__59FA5E80" FromRole="Сделка" ToRole="Способ_оплаты" />
+          <NavigationProperty Name="Финансовые_операции" Relationship="Self.FK__Финансовы__Код_с__5DCAEF64" FromRole="Сделка" ToRole="Финансовые_операции" />
+        </EntityType>
+        <EntityType Name="Состояние">
+          <Key>
+            <PropertyRef Name="Код_состояния" />
+          </Key>
+          <Property Name="Код_состояния" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Автомобили" Relationship="Self.FK__Автомобил__Код_с__5441852A" FromRole="Состояние" ToRole="Автомобили" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_должности" Type="Int32" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Код_паспорта" Type="Int32" Nullable="false" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Должности" Relationship="Self.FK__Сотрудник__Код_д__5AEE82B9" FromRole="Сотрудники" ToRole="Должности" />
+          <NavigationProperty Name="Паспорт" Relationship="Self.FK__Сотрудник__Код_п__5BE2A6F2" FromRole="Сотрудники" ToRole="Паспорт" />
+          <NavigationProperty Name="Сделка" Relationship="Self.FK__Сделка__Код_сотр__59063A47" FromRole="Сотрудники" ToRole="Сделка" />
+        </EntityType>
+        <EntityType Name="Способ_оплаты">
+          <Key>
+            <PropertyRef Name="Код_Способ_оплаты" />
+          </Key>
+          <Property Name="Код_Способ_оплаты" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Сделка" Relationship="Self.FK__Сделка__Код_Спос__59FA5E80" FromRole="Способ_оплаты" ToRole="Сделка" />
+        </EntityType>
+        <EntityType Name="Услуги">
+          <Key>
+            <PropertyRef Name="Код_услуги" />
+          </Key>
+          <Property Name="Код_услуги" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_авто" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Стоимость" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Автомобили" Relationship="Self.FK__Услуги__Код_авто__5CD6CB2B" FromRole="Услуги" ToRole="Автомобили" />
+        </EntityType>
+        <EntityType Name="Финансовые_операции">
+          <Key>
+            <PropertyRef Name="Код_операции" />
+          </Key>
+          <Property Name="Код_операции" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_сделки" Type="Int32" Nullable="false" />
+          <Property Name="Сумма" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Сделка" Relationship="Self.FK__Финансовы__Код_с__5DCAEF64" FromRole="Финансовые_операции" ToRole="Сделка" />
+        </EntityType>
+        <EntityType Name="Цвет">
+          <Key>
+            <PropertyRef Name="Код_цвета" />
+          </Key>
+          <Property Name="Код_цвета" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Автомобили" Relationship="Self.FK__Автомобил__Код_ц__5535A963" FromRole="Цвет" ToRole="Автомобили" />
+        </EntityType>
+        <Association Name="FK__Автомобил__Код_к__52593CB8">
+          <End Role="Комплектация" Type="Self.Комплектация" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Комплектация">
+              <PropertyRef Name="Код_комплектации" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_комплектации" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Автомобил__Код_м__534D60F1">
+          <End Role="Марка" Type="Self.Марка" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Марка">
+              <PropertyRef Name="Код_марки" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_марки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Автомобил__Код_с__5441852A">
+          <End Role="Состояние" Type="Self.Состояние" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Состояние">
+              <PropertyRef Name="Код_состояния" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_состояния" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Автомобил__Код_ц__5535A963">
+          <End Role="Цвет" Type="Self.Цвет" Multiplicity="1" />
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Цвет">
+              <PropertyRef Name="Код_цвета" />
+            </Principal>
+            <Dependent Role="Автомобили">
+              <PropertyRef Name="Код_цвета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_авто__571DF1D5">
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Автомобили">
+              <PropertyRef Name="Код_авто" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_авто" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Услуги__Код_авто__5CD6CB2B">
+          <End Role="Автомобили" Type="Self.Автомобили" Multiplicity="1" />
+          <End Role="Услуги" Type="Self.Услуги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Автомобили">
+              <PropertyRef Name="Код_авто" />
+            </Principal>
+            <Dependent Role="Услуги">
+              <PropertyRef Name="Код_авто" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сотрудник__Код_д__5AEE82B9">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Код_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_клие__5812160E">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Модель__Код_марк__5629CD9C">
+          <End Role="Марка" Type="Self.Марка" Multiplicity="1" />
+          <End Role="Модель" Type="Self.Модель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Марка">
+              <PropertyRef Name="Код_марки" />
+            </Principal>
+            <Dependent Role="Модель">
+              <PropertyRef Name="Код_марки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сотрудник__Код_п__5BE2A6F2">
+          <End Role="Паспорт" Type="Self.Паспорт" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Паспорт">
+              <PropertyRef Name="Код" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Код_паспорта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_сотр__59063A47">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Код_сотрудника" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сделка__Код_Спос__59FA5E80">
+          <End Role="Способ_оплаты" Type="Self.Способ_оплаты" Multiplicity="1" />
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Способ_оплаты">
+              <PropertyRef Name="Код_Способ_оплаты" />
+            </Principal>
+            <Dependent Role="Сделка">
+              <PropertyRef Name="Код_Способ_оплаты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Финансовы__Код_с__5DCAEF64">
+          <End Role="Сделка" Type="Self.Сделка" Multiplicity="1" />
+          <End Role="Финансовые_операции" Type="Self.Финансовые_операции" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сделка">
+              <PropertyRef Name="Код_сделки" />
+            </Principal>
+            <Dependent Role="Финансовые_операции">
+              <PropertyRef Name="Код_сделки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="АвтосалонEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Автомобили" EntityType="Self.Автомобили" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" />
+          <EntitySet Name="История" EntityType="Self.История" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
+          <EntitySet Name="Комплектация" EntityType="Self.Комплектация" />
+          <EntitySet Name="Марка" EntityType="Self.Марка" />
+          <EntitySet Name="Модель" EntityType="Self.Модель" />
+          <EntitySet Name="Паспорт" EntityType="Self.Паспорт" />
+          <EntitySet Name="Сделка" EntityType="Self.Сделка" />
+          <EntitySet Name="Состояние" EntityType="Self.Состояние" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+          <EntitySet Name="Способ_оплаты" EntityType="Self.Способ_оплаты" />
+          <EntitySet Name="Услуги" EntityType="Self.Услуги" />
+          <EntitySet Name="Финансовые_операции" EntityType="Self.Финансовые_операции" />
+          <EntitySet Name="Цвет" EntityType="Self.Цвет" />
+          <AssociationSet Name="FK__Автомобил__Код_к__52593CB8" Association="Self.FK__Автомобил__Код_к__52593CB8">
+            <End Role="Комплектация" EntitySet="Комплектация" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Автомобил__Код_м__534D60F1" Association="Self.FK__Автомобил__Код_м__534D60F1">
+            <End Role="Марка" EntitySet="Марка" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Автомобил__Код_с__5441852A" Association="Self.FK__Автомобил__Код_с__5441852A">
+            <End Role="Состояние" EntitySet="Состояние" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Автомобил__Код_ц__5535A963" Association="Self.FK__Автомобил__Код_ц__5535A963">
+            <End Role="Цвет" EntitySet="Цвет" />
+            <End Role="Автомобили" EntitySet="Автомобили" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_авто__571DF1D5" Association="Self.FK__Сделка__Код_авто__571DF1D5">
+            <End Role="Автомобили" EntitySet="Автомобили" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Услуги__Код_авто__5CD6CB2B" Association="Self.FK__Услуги__Код_авто__5CD6CB2B">
+            <End Role="Автомобили" EntitySet="Автомобили" />
+            <End Role="Услуги" EntitySet="Услуги" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сотрудник__Код_д__5AEE82B9" Association="Self.FK__Сотрудник__Код_д__5AEE82B9">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_клие__5812160E" Association="Self.FK__Сделка__Код_клие__5812160E">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Модель__Код_марк__5629CD9C" Association="Self.FK__Модель__Код_марк__5629CD9C">
+            <End Role="Марка" EntitySet="Марка" />
+            <End Role="Модель" EntitySet="Модель" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сотрудник__Код_п__5BE2A6F2" Association="Self.FK__Сотрудник__Код_п__5BE2A6F2">
+            <End Role="Паспорт" EntitySet="Паспорт" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_сотр__59063A47" Association="Self.FK__Сделка__Код_сотр__59063A47">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сделка__Код_Спос__59FA5E80" Association="Self.FK__Сделка__Код_Спос__59FA5E80">
+            <End Role="Способ_оплаты" EntitySet="Способ_оплаты" />
+            <End Role="Сделка" EntitySet="Сделка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Финансовы__Код_с__5DCAEF64" Association="Self.FK__Финансовы__Код_с__5DCAEF64">
+            <End Role="Сделка" EntitySet="Сделка" />
+            <End Role="Финансовые_операции" EntitySet="Финансовые_операции" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище АвтосалонModelContainer" CdmEntityContainer="АвтосалонEntities1">
+          <EntitySetMapping Name="Автомобили">
+            <EntityTypeMapping TypeName="АвтосалонModel.Автомобили">
+              <MappingFragment StoreEntitySet="Автомобили">
+                <ScalarProperty Name="Код_авто" ColumnName="Код_авто" />
+                <ScalarProperty Name="Код_цвета" ColumnName="Код_цвета" />
+                <ScalarProperty Name="Код_комплектации" ColumnName="Код_комплектации" />
+                <ScalarProperty Name="Год_выпуска" ColumnName="Год_выпуска" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Количество_владельцев" ColumnName="Количество_владельцев" />
+                <ScalarProperty Name="Код_состояния" ColumnName="Код_состояния" />
+                <ScalarProperty Name="СТС" ColumnName="СТС" />
+                <ScalarProperty Name="ПТС" ColumnName="ПТС" />
+                <ScalarProperty Name="Код_марки" ColumnName="Код_марки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Должности">
+            <EntityTypeMapping TypeName="АвтосалонModel.Должности">
+              <MappingFragment StoreEntitySet="Должности">
+                <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="История">
+            <EntityTypeMapping TypeName="АвтосалонModel.История">
+              <MappingFragment StoreEntitySet="История">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Cтатус" ColumnName="Cтатус" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиенты">
+            <EntityTypeMapping TypeName="АвтосалонModel.Клиенты">
+              <MappingFragment StoreEntitySet="Клиенты">
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+                <ScalarProperty Name="Код_паспорта" ColumnName="Код_паспорта" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Комплектация">
+            <EntityTypeMapping TypeName="АвтосалонModel.Комплектация">
+              <MappingFragment StoreEntitySet="Комплектация">
+                <ScalarProperty Name="Код_комплектации" ColumnName="Код_комплектации" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Марка">
+            <EntityTypeMapping TypeName="АвтосалонModel.Марка">
+              <MappingFragment StoreEntitySet="Марка">
+                <ScalarProperty Name="Код_марки" ColumnName="Код_марки" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Модель">
+            <EntityTypeMapping TypeName="АвтосалонModel.Модель">
+              <MappingFragment StoreEntitySet="Модель">
+                <ScalarProperty Name="Код_модели" ColumnName="Код_модели" />
+                <ScalarProperty Name="Код_марки" ColumnName="Код_марки" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Паспорт">
+            <EntityTypeMapping TypeName="АвтосалонModel.Паспорт">
+              <MappingFragment StoreEntitySet="Паспорт">
+                <ScalarProperty Name="Код" ColumnName="Код" />
+                <ScalarProperty Name="Серия" ColumnName="Серия" />
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="Дата_выдачи" ColumnName="Дата_выдачи" />
+                <ScalarProperty Name="Кем_выдан" ColumnName="Кем_выдан" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="Место_рождения" ColumnName="Место_рождения" />
+                <ScalarProperty Name="Место_прописки" ColumnName="Место_прописки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сделка">
+            <EntityTypeMapping TypeName="АвтосалонModel.Сделка">
+              <MappingFragment StoreEntitySet="Сделка">
+                <ScalarProperty Name="Код_сделки" ColumnName="Код_сделки" />
+                <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+                <ScalarProperty Name="Дата_сделки" ColumnName="Дата_сделки" />
+                <ScalarProperty Name="Сумма_сделки" ColumnName="Сумма_сделки" />
+                <ScalarProperty Name="Код_Способ_оплаты" ColumnName="Код_Способ_оплаты" />
+                <ScalarProperty Name="Срок_гарантии" ColumnName="Срок_гарантии" />
+                <ScalarProperty Name="Код_авто" ColumnName="Код_авто" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Состояние">
+            <EntityTypeMapping TypeName="АвтосалонModel.Состояние">
+              <MappingFragment StoreEntitySet="Состояние">
+                <ScalarProperty Name="Код_состояния" ColumnName="Код_состояния" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="АвтосалонModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+                <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Код_паспорта" ColumnName="Код_паспорта" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Способ_оплаты">
+            <EntityTypeMapping TypeName="АвтосалонModel.Способ_оплаты">
+              <MappingFragment StoreEntitySet="Способ_оплаты">
+                <ScalarProperty Name="Код_Способ_оплаты" ColumnName="Код_Способ_оплаты" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Услуги">
+            <EntityTypeMapping TypeName="АвтосалонModel.Услуги">
+              <MappingFragment StoreEntitySet="Услуги">
+                <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+                <ScalarProperty Name="Код_авто" ColumnName="Код_авто" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Финансовые_операции">
+            <EntityTypeMapping TypeName="АвтосалонModel.Финансовые_операции">
+              <MappingFragment StoreEntitySet="Финансовые_операции">
+                <ScalarProperty Name="Код_операции" ColumnName="Код_операции" />
+                <ScalarProperty Name="Код_сделки" ColumnName="Код_сделки" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Цвет">
+            <EntityTypeMapping TypeName="АвтосалонModel.Цвет">
+              <MappingFragment StoreEntitySet="Цвет">
+                <ScalarProperty Name="Код_цвета" ColumnName="Код_цвета" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
